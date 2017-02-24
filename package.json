@@ -1,0 +1,30 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "description": "//blog Application//",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wijnandvancooten/NYCDA-blog-app.git"
+  },
+  "author": "Wijnand van Cooten",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wijnandvancooten/NYCDA-blog-app/issues"
+  },
+  "homepage": "https://github.com/wijnandvancooten/NYCDA-blog-app#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.1",
+    "pg": "^6.1.2",
+    "pug": "^2.0.0-beta11",
+    "sequelize": "^3.30.2",
+    "express-session": "latest"
+  },
+  "devDependencies": {}
+}
