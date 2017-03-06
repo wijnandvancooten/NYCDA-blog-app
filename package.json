@@ -19,12 +19,12 @@
   "dependencies": {
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
+    "express-session": "latest",
     "method-override": "^2.3.7",
     "morgan": "^1.8.1",
     "pg": "^6.1.2",
     "pug": "^2.0.0-beta11",
-    "sequelize": "^3.30.2",
-    "express-session": "latest"
+    "sequelize": "^3.30.2"
   },
   "devDependencies": {}
 }
