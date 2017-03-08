@@ -1,15 +1,19 @@
 //- html layout
 html
   head
-    title Bulletin board
     //- importing bootstrap
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
   body
     nav(class="navbar navbar-light bg-faded")
-      //- go to index.js and find ('/') get request
-      a(class="navbar-brand" href="/") Add notice
-      //- go to index.js and find ('/board') get request
-      a(class="navbar-brand" style="float:right" href="/board") Bulletin board
+      //- link to register page
+      a.btn(href="./register") register
+      //- login for users
+      input( type="password", name="password", placeholder="your password", style="float:right")
+      input( type="text", name="username", placeholder="your username", style="float:right")
+      input( type="submit", style="float:right")
+
+
+
 
     //- render your content here from each page
     block content
