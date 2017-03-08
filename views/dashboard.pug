@@ -1,14 +1,17 @@
 html
   head
-    Blog app: dashboard
+    h4 Blog app: dashboard
     //- importing bootstrap
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
   body
-    p Your info here :
+    h5 Your info here :
     ul
-      for item in results
-        li= item
+      p username: #{li= results.username}
+      p firstname: #{li= results.firstname}
+      p lastname: #{li= results.lastname}
+      p email: #{li= results.email}
 
+    h5 All your posts:
     form( action="/register", method="post" )
         input( type="text", name="firstname", placeholder="John" )
         input( type="text", name="lastname", placeholder="Doe" )
