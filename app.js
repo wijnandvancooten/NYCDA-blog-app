@@ -17,6 +17,17 @@ const db = new sequelize('blogapp', 'wvancooten', 'null', {
 // set the public folder
 app.use(express.static('public'))
 
+// tels the app to use sessions. The session will be max 1 hour
+app.use(session({
+  secret: 'salad gelore',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false,
+  maxAge: 1000 * 60 * 60
+ }
+}))
+
+
 //create a table in de database Users
 let users = db.define('users', {
     username: sequelize.STRING,
@@ -55,9 +66,6 @@ app.get('/dashboard', (req, res) => {
 //login post for users. checks data in database and compares it to the input form the body
 app.post ('/', (req, res) => {
   //console.log(req.body)
-  username = req.body.username
-  password = req.body.password
-  //if (username == users.username && password == users.password)
   console.log('username: ' + username + ' password: ' + password)
   users.findOne({
     where: {
@@ -66,7 +74,11 @@ app.post ('/', (req, res) => {
   }).then(user => {
     if (user.password == req.body.password) {
       console.log ('loged in: ' + req.body.username)
+      console.log('session before', req.session)
+      req.session.visited = true
+      req.session.user = user
       res.render('dashboard')
+      console.log('session after',req.session)
     } else {
       res.render('wronglogin')
     }
