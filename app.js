@@ -60,30 +60,37 @@ app.get('/register', (req, res) => {
 
 //renders the dasgboard pug file on url /dashboard//
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    if (req.session.visited == true) {
+      res.render('dashboard', {results: req.session.user})
+      console.log ("good job by " + req.session.user.username)
+    } else {
+      res.redirect('/')
+      console.log ("log in fucker!")
+    }
 })
 
 //login post for users. checks data in database and compares it to the input form the body
 app.post ('/', (req, res) => {
   //console.log(req.body)
-  console.log('username: ' + username + ' password: ' + password)
+  //console.log('username: ' + username + ' password: ' + password)
   users.findOne({
     where: {
       username:req.body.username
     }
   }).then(user => {
     if (user.password == req.body.password) {
-      console.log ('loged in: ' + req.body.username)
-      console.log('session before', req.session)
+      //console.log ('loged in: ' + req.body.username)
+      //console.log('session before', req.session)
+      //sets the session visited to true after login
       req.session.visited = true
+      //stores the users data in the session after login. Data can be uses in dashboard
       req.session.user = user
-      res.render('dashboard')
-      console.log('session after',req.session)
+      res.redirect('/dashboard')
+      //console.log('session after',req.session)
     } else {
       res.render('wronglogin')
     }
   })
-
 })
 
 //sending userdata to database blogapp table users
