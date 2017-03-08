@@ -54,7 +54,24 @@ app.get('/dashboard', (req, res) => {
 
 //login post for users. checks data in database and compares it to the input form the body
 app.post ('/', (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
+  username = req.body.username
+  password = req.body.password
+  //if (username == users.username && password == users.password)
+  console.log('username: ' + username + ' password: ' + password)
+  users.findOne({
+    where: {
+      username:req.body.username
+    }
+  }).then(user => {
+    if (user.password == req.body.password) {
+      console.log ('loged in: ' + req.body.username)
+      res.render('dashboard')
+    } else {
+      res.render('wronglogin')
+    }
+  })
+
 })
 
 //sending userdata to database blogapp table users
