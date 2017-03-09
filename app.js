@@ -70,6 +70,12 @@ app.use(bodyParser.urlencoded({
 //sets the view engine to pug. pug renders the html page//
 app.set('view engine', 'pug')
 
+//logout for user and redirect to rout
+app.get('/logout', (req, res) =>{
+  req.session.visited = false
+  res.redirect('/')
+  console.log(req.session)
+})
 
 //renders the pugfile allposts.pug on the root directory
 app.get('/', (req, res) => {
@@ -85,12 +91,14 @@ app.get('/', (req, res) => {
 
 //gets the unique id to show one post
 app.get('/onepost/:id', (req, res) => {
-  //find the full row of data in 'posts' table from the id
-  posts.findById(req.params.id).then(post => {
-    //renders the onepost.pug file
-    console.log(post)
-    res.render('onepost', { post: post })
-  })
+    //find the full row of data in 'posts' table from the id
+    posts.findById(req.params.id).then(post => {
+        //renders the onepost.pug file
+        console.log(post)
+        res.render('onepost', {
+            post: post
+        })
+    })
 })
 
 //renders the register pug file on url /register//
@@ -105,21 +113,24 @@ app.get('/createpost', (req, res) => {
 
 //renders the dasgboard pug file on url /dashboard//
 app.get('/dashboard', (req, res) => {
+    // is user is logedin it will render the page.
     if (req.session.visited == true) {
+      //findes all posts of the logedin user
         posts.findAll({
-            where: {
-                userId: req.session.user.id
-            }
-        })
-        .then(posts => {
-        //renders the onepost.pug file
-        console.log(posts)
-        res.render('dashboard', {
-          posts: posts,
-          results: req.session.user
-        })
-      })
+                where: {
+                    userId: req.session.user.id
+                }
+            })
+            .then(posts => {
+                //renders all posts of the user and will render the logedin user data
+                console.log(posts)
+                res.render('dashboard', {
+                    posts: posts,
+                    results: req.session.user
+                })
+            })
         console.log("good job by " + req.session.user.username)
+    //if user is not logedin then it will redirect to rout page
     } else {
         res.redirect('/')
         console.log("log in fucker!")
