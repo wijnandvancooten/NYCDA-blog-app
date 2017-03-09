@@ -94,12 +94,30 @@ app.get('/onepost/:id', (req, res) => {
     //find the full row of data in 'posts' table from the id
     posts.findById(req.params.id).then(post => {
         //renders the onepost.pug file
-        console.log(post)
+        //console.log(post)
         res.render('onepost', {
             post: post
         })
     })
 })
+//leave a comment at a post
+app.post('/onepost/*', (req, res)=>{
+  if (req.session.visited == true) {
+
+      let newComment = {
+          body: req.body.body,
+          userId: req.session.user.id,
+          postId: req.body.postId
+      }
+      comments.create(newComment)
+      //res.redirect('/onepost/:id')
+      console.log("your comment: " + newComment)
+  } else {
+      res.redirect('/')
+      console.log("log in fucker!")
+  }
+})
+
 
 //renders the register pug file on url /register//
 app.get('/register', (req, res) => {

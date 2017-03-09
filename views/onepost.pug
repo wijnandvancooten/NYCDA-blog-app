@@ -19,6 +19,11 @@ html
         li= post.body
         li= post.userId
 
+        form( method="post" )
+          input(type="hidden" name="postId" value= post.id)
+          textarea( type="text", name="body", rows="5", cols="80", placeholder="your message" )
+          input( type="submit" )
+
 
 
     //- render your content here from each page
