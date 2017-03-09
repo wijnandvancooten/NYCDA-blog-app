@@ -1,0 +1,11 @@
+html
+  head
+    Blog app: create a post
+    //- importing bootstrap
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
+  body
+    p create a post here:
+      form( action="/createpost", method="post" )
+        input( type="text", name="title", placeholder="title" )
+        textarea( type="text", name="body", rows="5", cols="80", placeholder="your message" )
+        input( type="submit" )

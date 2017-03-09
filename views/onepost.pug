@@ -14,13 +14,10 @@ html
         input( type="text", name="username", placeholder="your username", style="float:right")
         input( type="submit", style="float:right")
     ul
-      each post in posts
-        p
-          li= post.title
-          li= post.body
-          li= post.userId
-          li= post.id
-          a(href="/onepost/" + post.id) open post
+      p
+        li= post.title
+        li= post.body
+        li= post.userId
 
 
 
