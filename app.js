@@ -106,9 +106,19 @@ app.get('/createpost', (req, res) => {
 //renders the dasgboard pug file on url /dashboard//
 app.get('/dashboard', (req, res) => {
     if (req.session.visited == true) {
-        res.render('dashboard', {
-            results: req.session.user
+        posts.findAll({
+            where: {
+                userId: req.session.user.id
+            }
         })
+        .then(posts => {
+        //renders the onepost.pug file
+        console.log(posts)
+        res.render('dashboard', {
+          posts: posts,
+          results: req.session.user
+        })
+      })
         console.log("good job by " + req.session.user.username)
     } else {
         res.redirect('/')
