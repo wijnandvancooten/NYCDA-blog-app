@@ -134,6 +134,15 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
+//renders the login pug file on url /register//
+app.get('/login', (req, res) => {
+  if (req.session.visited == true) {
+    res.redirect('/dashboard')
+  } else {
+    res.render('login')
+  }
+})
+
 //renders the register pug file on url /register//
 app.get('/createpost', (req, res) => {
     res.render('createpost')

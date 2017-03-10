@@ -5,22 +5,20 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
   body
     nav(class="navbar navbar-light bg-faded")
-      form( action="/", method="post" )
-        //- link to register page
-        a.btn(href="./register") register
-        //- login for users
-        span(id="error")
-        input( type="password", name="password", placeholder="your password", style="float:right")
-        input( type="text", name="username", placeholder="your username", style="float:right")
-        input( type="submit", style="float:right")
-    ul
-      each post in posts
-        p
-          li= post.title
-          li= post.body
-          li= post.userId
-          li= post.id
-          a(href="/onepost/" + post.id) open post
+      a(type="button", href="/dashboard") dashboard
+      a(type="button", href="/createpost") new post
+      a(type="button", href="/register" style="center") register
+      a(type="button", href="/logout" style="float:right") logout
+      a(type="button", href="/login" style="float:right") login
+    h5 ALL POSTS
+      ul
+        each post in posts
+          p
+            li= post.title
+            li= post.body
+            li= post.userId
+            li= post.id
+            a(href="/onepost/" + post.id) open post
 
 
 

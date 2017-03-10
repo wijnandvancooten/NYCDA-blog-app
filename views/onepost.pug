@@ -4,6 +4,9 @@ html
     //- importing bootstrap
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
   body
+    a(type="button", href="/") home
+    a(type="button", href="/dashboard") dashboard
+    a(type="button", href="/logout" style="float:right") logout
     nav(class="navbar navbar-light bg-faded")
       form( action="/", method="post" )
         //- link to register page
@@ -22,7 +25,7 @@ html
           each comment in post.comments
             p
               li= comment.body
-              
+
 
         form( method="post" )
           input(type="hidden" name="postId" value= post.id)
