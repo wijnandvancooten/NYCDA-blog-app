@@ -92,7 +92,15 @@ app.get('/', (req, res) => {
 //gets the unique id to show one post
 app.get('/onepost/:id', (req, res) => {
     //find the full row of data in 'posts' table from the id
-    posts.findById(req.params.id).then(post => {
+    posts.findOne({
+      where: {
+          id: req.params.id
+      },
+      include: [
+        {model: comments},
+        //{model: users}
+      ]
+      }).then(post => {
         //renders the onepost.pug file
         //console.log(post)
         res.render('onepost', {
@@ -100,6 +108,8 @@ app.get('/onepost/:id', (req, res) => {
         })
     })
 })
+
+
 //leave a comment at a post
 app.post('/onepost/*', (req, res)=>{
   if (req.session.visited == true) {

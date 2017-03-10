@@ -18,6 +18,11 @@ html
         li= post.title
         li= post.body
         li= post.userId
+        ul
+          each comment in post.comments
+            p
+              li= comment.body
+              
 
         form( method="post" )
           input(type="hidden" name="postId" value= post.id)
